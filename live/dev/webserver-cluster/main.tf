@@ -19,10 +19,22 @@ terraform {
   }
 }
 
+data "template_file" "user_data" {
+  template = file("${path.module}/user-data.sh")
+}
+
 module "networking_alb" {
   source = "../../../modules/networking/alb"
 }
 
 module "cluster_asg" {
   source = "../../../modules/cluster/asg-rolling-deploy"
+
+  target_group_arns = module.networking_alb.target_group_arns
+  min_size          = 2
+  max_size          = 4
+  desired_capacity  = 3
+  image_id          = "ami-01a6e31ac994bbc09"
+  instance_type     = "t2.micro"
+  user_data         = data.template_file.user_data.rendered
 }
