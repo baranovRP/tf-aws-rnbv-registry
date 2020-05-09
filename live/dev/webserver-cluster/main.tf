@@ -19,8 +19,10 @@ terraform {
   }
 }
 
-module "webserver_cluster" {
+module "networking_alb" {
   source = "../../../modules/networking/alb"
 }
 
-resource "null_resource" "null" {}
+module "cluster_asg" {
+  source = "../../../modules/cluster/asg-rolling-deploy"
+}
