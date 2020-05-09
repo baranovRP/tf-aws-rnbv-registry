@@ -29,6 +29,7 @@ terraform {
   }
 }
 
+resource "null_resource" "example" {}
 
 #######################################################################
 data "aws_vpc" "default" {
