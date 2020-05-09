@@ -1,0 +1,5 @@
+version: 3
+projects:
+  - dir: modules/networking/alb
+    autoplan:
+      when_modified: ["*.tf*"]
