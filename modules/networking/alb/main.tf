@@ -1,14 +1,4 @@
-/*
-aws_lb
-
-aws_lb_listener
-
-aws_security_group (the one for the ALB, but not for the Instances)
-
-aws_security_group_rule (both of the rules for the ALB, but not for the Instances)
-*/
-
-#######################################################################
+###
 data "aws_vpc" "default" {
   default = true
 }
